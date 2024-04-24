@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Shrezird Games: About</title>
+    <link rel="icon" href="Icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
     <style>
         body {
@@ -46,7 +48,7 @@
             transform: scale(1.05);
         }
 
-        .header a[href='Updates.html'] div {
+        .header a[href='About/'] div {
             color: rgb(90, 20, 130);
         }
         footer {
@@ -65,41 +67,26 @@
     </style>
     <script>
         window.onload = function() {
-            var messages = [
-                "hmmmm I ran out of messages",
-                "im sure no one will notice this lol",
-                "whoops i think you're lost",
-                "are your a microwave? cause you're mmmmmmmm",
-                "i see you",
-                "got any grapes?",
-                "darlin you took a wrong turn",
-                "pixel is always watching",
-                "the lore do be um loreing???",
-                "hey... your amazing",
-                "well then here we are",
-                "what would happen if um yes",
-                "me legit writing messages no one is ever going to read XD",
-                "stop looking at me",
-                "you are slayin today",
-                "slay queen",
-                "you are so fab",
-                "creativity and adhd are such a strange combo",
-                "hello there",
-                "anybody seen my brain",
-                "4208162902"
-            ];
-            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('message').innerText = randomMessage;
+            fetch('Message.txt')
+                .then(response => response.text())
+                .then(data => {
+                    var messages = data.split('\n');
+                    var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                    document.getElementById('message').innerText = randomMessage;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 </head>
 <body>
     <h1>Shrezird Games</h1>
     <div class="header">
-        <a href="Projects.html"><div>Projects</div></a>
-        <a href="Updates.html"><div>Updates</div></a>
-        <a href="Announcements.html"><div>Announcements</div></a>
-        <a href="index.html"><div>About Me</div></a>
+        <a href="Projects/"><div>Projects</div></a>
+        <a href="Updates/"><div>Updates</div></a>
+        <a href="Announcements/"><div>Announcements</div></a>
+        <a href="About/"><div>About Me</div></a>
     </div>
     <footer>
         <p id="message"></p>

@@ -74,9 +74,6 @@
                     var randomMessage = messages[Math.floor(Math.random() * messages.length)];
                     document.getElementById('message').innerText = randomMessage;
                 })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
         }
     </script>
 </head>
@@ -88,6 +85,8 @@
         <a href='./'><div>Announcements</div></a>
         <a href='../About/'><div>About</div></a>
     </div>
+    <h1 style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); font-size: 5em; text-align: center;">404</h1>
+    <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em; text-align: center;">there was an error displaying page content at this time</p>
     <footer>
         <p id="message"></p>
         <p>© 2024 Shrezird Games. All rights reserved.</p>

@@ -67,7 +67,7 @@
     </style>
     <script>
         window.onload = function() {
-            fetch('Message.txt')
+            fetch('./Assets/Message.txt')
                 .then(response => response.text())
                 .then(data => {
                     var messages = data.split('\n');

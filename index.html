@@ -1,188 +1,223 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shrezird Games: About</title>
-    <link rel="icon" href="./Assets/Icon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrezird Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
     <style>
-    body {
-        background-image: url('./Assets/Background.png');
-        background-size: cover;
-        height: 100vh;
-        margin: 0;
-        font-family: 'Baloo 2', cursive;
-        overflow: hidden;
-    }
-        h1 {
-            color: rgb(0, 0, 0);
-            font-size: 2em;
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
             margin: 0;
-            padding: 0 10px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            position: fixed;
-            left: 5px;
-            top: 0;
+            padding: 0;
         }
-        .header {
+
+        header {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            position: fixed;
-            right: 20px;
-            top: 10px;
-        }
-        .header div {
-            color: rgb(0, 0, 0);
-            font-size: 1.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            margin-left: 20px;
-            transition: color 0.5s ease, transform 0.5s ease;
-        }
-        .header div:hover {
-            color: rgb(248, 248, 248);
-            transform: scale(1.05);
-        }
-        .header a {
-            text-decoration: none;
-        }
-        .header a:hover div {
-            transform: scale(1.05);
-        }
-        .header a[href='About/'] div {
-            color: rgb(248, 248, 248);
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 20px;
-            width: 80%;
-            margin: 0 auto;
-            margin-top: 15vh;
-        }
-        .box {
-            flex: 1;
-            max-width: 30%;
-            background-color: rgba(231, 223, 200, 0.4);
             padding: 20px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            text-align: center;
-            color: rgb(0, 0, 0);
-            transition: transform 0.3s ease;
-            min-height: 350px;
+            background-color: #1e1e1e;
+            color: #ffffff;
         }
-        .box:hover {
+
+        .header-left {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .header-right a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .header-right a:hover {
+            transform: scale(1.05);
+            color: #bbbbbb;
+            transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .about, .developers {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .developers div {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .developers div:hover {
             transform: scale(1.05);
         }
-        .box img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-        .box h2 {
-            font-size: 1.8em;
-            margin: 0;
-        }
-        .box h3 {
-            font-size: 1.5em;
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
-        .box p {
-            font-size: 1.2em;
-            line-height: 1.5;
-        }
-        .studio-heading {
-            font-size: 2em;
-            text-align: center;
-            margin: 50px auto 20px auto;
-            color: rgb(0, 0, 0);
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        .studio-text {
-            font-size: 1.2em;
-            line-height: 1.6;
-            width: 80%;
-            margin: 0 auto 50px auto;
-            text-align: center;
-            color: rgb(0, 0, 0);
-        }
-        footer {
+
+        #theme-toggle {
             position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
+            bottom: 20px;
+            right: 20px;
+            background-color: #888888;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
         }
-        footer p {
-            color: rgb(0, 0, 0);
-            font-size: 1.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+        #theme-toggle:hover {
+            background-color: #555555;
         }
-        .discord-icon {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s ease;
+
+        .dark-mode {
+            background-color: #333333;
+            color: #ffffff;
         }
-        .discord-icon:hover {
-            transform: scale(1.1);
+
+        .dark-mode header {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .dark-mode .header-right a {
+            color: #ffffff;
+        }
+
+        .dark-mode .header-right a:hover {
+            color: #aaaaaa;
+        }
+
+        .dark-mode .about, .dark-mode .developers, .dark-mode footer {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .dark-mode #theme-toggle {
+            background-color: #555555;
         }
     </style>
-    <script>
-        window.onload = function() {
-            fetch('./Assets/Message.txt')
-                .then(response => response.text())
-                .then(data => {
-                    var messages = data.split('\n');
-                    var randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                    document.getElementById('message').innerText = randomMessage;
-                })
+<style>
+        body {
+            opacity: 0;
+            transition: opacity 1s ease-in;
         }
-    </script>
+        body.fade-in {
+            opacity: 1;
+        }
+    </style>
+    <link rel="icon" href="Logo.png" type="image/png">
 </head>
 <body>
-    <h1>Shrezird Games</h1>
-    <div class="header">
-        <a href='Projects/'><div>Projects</div></a>
-        <a href='Updates/'><div>Updates</div></a>
-        <a href='Announcements/'><div>Announcements</div></a>
-        <a href='About/'><div>About</div></a>
-    </div>
-    <div class="container">
-        <div class="box">
-            <img src="Assets/User.png" alt="Lead Developer">
+    <header>
+        <div class="header-left">Shrezird Games</div>
+        <div class="header-right">
+            <a href="https://discord.gg/v5yCnd2vuk">Discord</a>
+            <a href="https://x.com/shrezird">X</a>
+            <a href="https://github.com/shrezird">Github</a>
+            <a href="https://www.youtube.com/@shrezird">YouTube</a>
+            <a href="https://www.tiktok.com/@shrezird">TikTok</a>
+            <a href="https://shrezird.itch.io/">itch.io</a>
+        </div>
+    </header>
+    
+    <section class="about">
+        <h1>About Us</h1>
+        <p>Shrezird Games is an indie game development studio based in the United States, focusing on creating unique and immersive gaming experiences. We take pride in developing our games from scratch, ensuring that every aspect reflects our passion and vision.</p>
+    </section>
+    
+    <section class="developers" style="display: flex; justify-content: space-around; align-items: flex-start; padding: 40px; gap: 20px;">
+        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
             <h2>shrezird</h2>
-            <h3>Lead Developer</h3>
-            <p>Just a nerd jack-of-all-trades, I handle front end and back end of development on all our projects. I do programming, design, art, and music. I'm not exactly the best but no one is perfect!</p>
+            <p>Shrezird is the Lead Developer who handles backend and frontend development ranging from programming, game design, music, and art.</p>
         </div>
-        <div class="box">
-            <img src="Assets/User.png" alt="Artist">
+        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
             <h2>FoxSenpaii</h2>
-            <h3>Lead Artist</h3>
-            <p>Fox here! Resident digital artist on this here website. Check out my socials, if you have the spare time (even though most are dead.) I make things look pretty :D</p>
+            <p>FoxSenpaii is the Lead Artist who creates almost all things visual and makes sure that every game released is both stunning and stylish.</p>
         </div>
-        <div class="box">
-            <img src="Assets/User.png" alt="Voice">
-            <h2>Hammond</h2>
-            <h3>Voice Actor</h3>
-            <p>A very talented voice actor.</p>
+        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
+            <h2>SixAsh1913</h2>
+            <p>SixAsh1913 is the Lead Tester who has the main responsibility of finding bugs and performance issues.</p>
         </div>
-    </div>
-    <h2 class="studio-heading">About Our Studio</h2>
-    <p class="studio-text">We're a small group of nerds trying to do what we enjoy! Currently our primary focus is making 2D games using the Pygame framework provided through Python. Unfortunately, at this time we have no projects released but that doesn't mean that's how it will always be. Stick around, maybe check out our discord!</p>
-    <footer>
-        <p id="message"></p>
-        <p>© 2024 Shrezird Games. All rights reserved.</p>
-        <a href="https://discord.gg/metDqzKRZe" target="_blank">
-            <img src="Assets/Discord.png" alt="Discord" class="discord-icon">
-        </a>
+    </section>
+    <section class="projects" style="padding: 40px; text-align: center;">
+        <h1>Our Projects</h1>
+        <p>(Uh Oh, there isn't anything here yet)</p>
+    </section>
+    <footer style="background-color: #1e1e1e; color: #ffffff; text-align: center; padding: 20px; position: fixed; bottom: 0; left: 0; width: 100%;">
+        <p id="dynamic-text"></p>
+        <p>&copy; 2024 Shrezird Games. All Rights Reserved.</p>
     </footer>
+    <script>
+        const messages = [
+            '(when all else fails, make a game)',
+            '(do I know you)',
+            '(pixel is always watching)',
+            '(they are always watching)'
+        ];
+        document.getElementById('dynamic-text').textContent = messages[Math.floor(Math.random() * messages.length)];
+    </script>
+<script>
+        window.addEventListener('load', () => {
+            document.body.classList.add('fade-in');
+        });
+    </script>
+    <script>
+        let clickCount = 0;
+        const headerTitle = document.querySelector('.header-left');
+        headerTitle.addEventListener('click', () => {
+            clickCount++;
+            const messages = [
+                "I wouldn't do that.",
+                "Stop it.",
+                "I'm warning you.",
+                "This is the last warning.",
+                "Oops"
+            ];
+            if (clickCount % 2 === 0 && clickCount / 2 <= messages.length) {
+                headerTitle.textContent = messages[Math.floor(clickCount / 2) - 1];
+                if (clickCount / 2 === messages.length) {
+                    document.title = 'Oops';
+                    setInterval(() => {
+                        document.body.style.backgroundColor = getRandomColor();
+                        document.body.style.color = getRandomColor();
+                        document.querySelectorAll('*').forEach(el => {
+                            el.style.color = getRandomColor();
+                            el.style.backgroundColor = getRandomColor();
+                            if (el.tagName === 'P' || el.tagName === 'H1' || el.tagName === 'H2') {
+                                el.textContent = randomizeText(el.textContent);
+                            }
+                        });
+                    }, 50);
+                }
+            }
+        });
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function randomizeText(text) {
+            return text.split('').sort(() => 0.5 - Math.random()).join('');
+        }
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function randomizeText(text) {
+            return text.split('').sort(() => 0.5 - Math.random()).join('');
+        }
+
+        function getRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+    </script>
 </body>
 </html>

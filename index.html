@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Ensure proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrezird Games</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Link to external CSS file (if used) -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <!-- Combined CSS Styles -->
     <style>
         body {
             font-family: 'Comfortaa', sans-serif;
@@ -13,10 +17,16 @@
             color: #ffffff;
             margin: 0;
             padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        body.fade-in {
+            opacity: 1;
         }
 
         header {
             display: flex;
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
             justify-content: space-between;
             align-items: center;
             padding: 20px;
@@ -27,14 +37,26 @@
         .header-left {
             font-size: 1.5em;
             font-weight: bold;
+            flex: 1 1 auto; /* Allow flexibility */
+        }
+
+        .header-right {
+            display: flex;
+            flex-wrap: wrap; /* Wrap links on smaller screens */
+            justify-content: flex-end;
+            flex: 1 1 auto;
         }
 
         .header-right a {
             color: #ffffff;
             text-decoration: none;
-            margin-left: 15px;
+            margin: 10px 5px;
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
             display: inline-block;
+        }
+
+        .header-right a:first-child {
+            margin-left: 0; /* Remove margin from the first link */
         }
 
         .header-right a:hover {
@@ -43,14 +65,27 @@
             transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        .about, .developers {
+        .about, .developers, .projects {
             background-color: #1e1e1e;
             color: #ffffff;
-            padding: 40px;
+            padding: 40px 5%; /* Use percentage for horizontal padding */
             text-align: center;
         }
 
+        .developers {
+            display: flex;
+            flex-wrap: wrap; /* Allow developer sections to wrap */
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 40px 5%;
+            gap: 20px;
+        }
+
         .developers div {
+            flex: 1 1 300px; /* Set a minimum width */
+            max-width: 30%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
             transition: transform 0.3s ease-in-out;
         }
 
@@ -58,6 +93,35 @@
             transform: scale(1.05);
         }
 
+        footer {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: relative; /* Changed from fixed */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            /* Adjust header */
+            .header-left, .header-right {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+            .header-right {
+                justify-content: center;
+            }
+            .header-right a {
+                margin: 10px 5px;
+            }
+
+            /* Adjust developers section */
+            .developers div {
+                max-width: 100%;
+            }
+        }
+
+        /* Other existing styles */
         #theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -103,15 +167,7 @@
             background-color: #555555;
         }
     </style>
-<style>
-        body {
-            opacity: 0;
-            transition: opacity 1s ease-in;
-        }
-        body.fade-in {
-            opacity: 1;
-        }
-    </style>
+    <!-- Favicon -->
     <link rel="icon" href="Logo.png" type="image/png">
 </head>
 <body>
@@ -132,25 +188,25 @@
         <p>Shrezird Games is an independent game development studio based in the United States, focusing on creating the next cool 2D game. We do almost every bit of our development from scratch and prefer to use GameMaker as our primary engine of choice. At this time we are only working with 2D but we have plans to move to 3D eventually. If you would like to see our latest projects and sneak peaks then check out our socials linked at the top right of the page! Have a good one <3!</p>
     </section>
     
-    <section class="developers" style="display: flex; justify-content: space-around; align-items: flex-start; padding: 40px; gap: 20px;">
-        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
+    <section class="developers">
+        <div>
             <h2>shrezird</h2>
             <p>Shrezird, the lead developer, manages both backend and frontend development, doing most of the programming, game design, music, and art.</p>
         </div>
-        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
+        <div>
             <h2>FoxSenpaii</h2>
             <p>FoxSenpaii, the lead artist, designs nearly all visual elements, ensuring every game released is both breathtaking and stylish.</p>
         </div>
-        <div style="flex: 1; max-width: 30%; box-sizing: border-box;">
+        <div>
             <h2>SixAsh1913</h2>
             <p>SixAsh1913, the lead tester, is primarily responsible for identifying bugs and performance issues in every project we release.</p>
         </div>
     </section>
-    <section class="projects" style="padding: 40px; text-align: center;">
+    <section class="projects">
         <h1>Our Projects</h1>
         <p>(Uh Oh, there isn't anything here yet)</p>
     </section>
-    <footer style="background-color: #1e1e1e; color: #ffffff; text-align: center; padding: 20px; position: fixed; bottom: 0; left: 0; width: 100%;">
+    <footer>
         <p id="dynamic-text"></p>
         <p>&copy; 2023 - 2024 Shrezird Games. All Rights Reserved FOREVER.</p>
     </footer>
@@ -181,7 +237,7 @@
         ];
         document.getElementById('dynamic-text').textContent = messages[Math.floor(Math.random() * messages.length)];
     </script>
-<script>
+    <script>
         window.addEventListener('load', () => {
             document.body.classList.add('fade-in');
         });
@@ -223,18 +279,6 @@
 
         function randomizeText(text) {
             return text.split('').sort(() => 0.5 - Math.random()).join('');
-        }
-
-        function getRandomColor() {
-            return '#' + Math.floor(Math.random() * 16777215).toString(16);
-        }
-
-        function randomizeText(text) {
-            return text.split('').sort(() => 0.5 - Math.random()).join('');
-        }
-
-        function getRandomColor() {
-            return '#' + Math.floor(Math.random() * 16777215).toString(16);
         }
     </script>
 </body>

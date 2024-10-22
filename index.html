@@ -2,14 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Ensure proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrezird Games</title>
-    <!-- Link to external CSS file (if used) -->
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <!-- Combined CSS Styles -->
     <style>
         body {
             font-family: 'Comfortaa', sans-serif;
@@ -20,13 +15,14 @@
             opacity: 0;
             transition: opacity 1s ease-in;
         }
+
         body.fade-in {
             opacity: 1;
         }
 
         header {
             display: flex;
-            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
@@ -37,12 +33,12 @@
         .header-left {
             font-size: 1.5em;
             font-weight: bold;
-            flex: 1 1 auto; /* Allow flexibility */
+            flex: 1 1 auto;
         }
 
         .header-right {
             display: flex;
-            flex-wrap: wrap; /* Wrap links on smaller screens */
+            flex-wrap: wrap;
             justify-content: flex-end;
             flex: 1 1 auto;
         }
@@ -51,30 +47,34 @@
             color: #ffffff;
             text-decoration: none;
             margin: 10px 5px;
-            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
             display: inline-block;
+            text-shadow: none;
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+            will-change: transform, text-shadow, color;
         }
 
         .header-right a:first-child {
-            margin-left: 0; /* Remove margin from the first link */
+            margin-left: 0;
         }
 
         .header-right a:hover {
             transform: scale(1.05);
             color: #bbbbbb;
-            transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
+            text-shadow:
+                0 0 5px rgba(255, 255, 255, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .about, .developers, .projects {
             background-color: #1e1e1e;
             color: #ffffff;
-            padding: 40px 5%; /* Use percentage for horizontal padding */
+            padding: 40px 5%;
             text-align: center;
         }
 
         .developers {
             display: flex;
-            flex-wrap: wrap; /* Allow developer sections to wrap */
+            flex-wrap: wrap;
             justify-content: space-around;
             align-items: flex-start;
             padding: 40px 5%;
@@ -82,15 +82,20 @@
         }
 
         .developers div {
-            flex: 1 1 300px; /* Set a minimum width */
+            flex: 1 1 300px;
             max-width: 30%;
             box-sizing: border-box;
             margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
+            text-shadow: none;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            will-change: transform, text-shadow;
         }
 
         .developers div:hover {
             transform: scale(1.05);
+            text-shadow:
+                0 0 5px rgba(255, 255, 255, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         footer {
@@ -98,12 +103,10 @@
             color: #ffffff;
             text-align: center;
             padding: 20px;
-            position: relative; /* Changed from fixed */
+            position: relative;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
-            /* Adjust header */
             .header-left, .header-right {
                 flex: 1 1 100%;
                 text-align: center;
@@ -115,59 +118,11 @@
                 margin: 10px 5px;
             }
 
-            /* Adjust developers section */
             .developers div {
                 max-width: 100%;
             }
         }
-
-        /* Other existing styles */
-        #theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #888888;
-            color: #ffffff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            z-index: 1000;
-        }
-
-        #theme-toggle:hover {
-            background-color: #555555;
-        }
-
-        .dark-mode {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        .dark-mode header {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        .dark-mode .header-right a {
-            color: #ffffff;
-        }
-
-        .dark-mode .header-right a:hover {
-            color: #aaaaaa;
-        }
-
-        .dark-mode .about, .dark-mode .developers, .dark-mode footer {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        .dark-mode #theme-toggle {
-            background-color: #555555;
-        }
     </style>
-    <!-- Favicon -->
     <link rel="icon" href="Logo.png" type="image/png">
 </head>
 <body>
@@ -208,7 +163,7 @@
     </section>
     <footer>
         <p id="dynamic-text"></p>
-        <p>&copy; 2023 - 2024 Shrezird Games. All Rights Reserved FOREVER.</p>
+        <p id="footer-text">&copy; 2023 - 2024 Shrezird Games. All Rights Reserved FOREVER.</p>
     </footer>
     <script>
         const messages = [
@@ -235,7 +190,34 @@
             '(this is the end)',
             '(2904612082)'
         ];
-        document.getElementById('dynamic-text').textContent = messages[Math.floor(Math.random() * messages.length)];
+
+        const dynamicTextElement = document.getElementById('dynamic-text');
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        let index = 0;
+
+        function typeWriter() {
+            if (index < message.length) {
+                dynamicTextElement.textContent += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, 25);
+            } else {
+                setTimeout(typeFooterText, 250);
+            }
+        }
+        typeWriter();
+
+        const footerTextElement = document.getElementById('footer-text');
+        const footerMessage = footerTextElement.textContent;
+        footerTextElement.textContent = '';
+        let footerIndex = 0;
+
+        function typeFooterText() {
+            if (footerIndex < footerMessage.length) {
+                footerTextElement.textContent += footerMessage.charAt(footerIndex);
+                footerIndex++;
+                setTimeout(typeFooterText, 25);
+            }
+        }
     </script>
     <script>
         window.addEventListener('load', () => {

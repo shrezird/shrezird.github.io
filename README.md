@@ -1,3 +1,6 @@
+# This website has been archived and is no longer provided with updates, please see our new and improved website here: https://www.shrezirdgames.com/
+
+
 Welcome to our GitHub hosted static website for our studio Shrezird Games! Here, you’ll find information on all our current and past projects, as well as details about our developers and studio.
 
 Last Website Update: 10/23/2024

@@ -1,6 +1,15 @@
 <html>
 <head>
   <title>Oh no...</title>
+  <link id="favicon" rel="icon" type="image/png" href="website/visual/favicon/frames/1.png">
+  <script>
+    let currentFrame = 1;
+    function updateFavicon() {
+      currentFrame = currentFrame % 4 + 1;
+      document.getElementById('favicon').href = `website/visual/favicon/frames/${currentFrame}.png`;
+    }
+    setInterval(updateFavicon, 250);
+  </script>
   <style>
     body {
       font-family: Arial;

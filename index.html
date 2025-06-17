@@ -1,12 +1,12 @@
 <html>
 <head>
-  <title>Oh no...</title>
-  <link id="favicon" rel="icon" type="image/png" href="website/visual/favicon/frames/1.png">
+  <title>Bloxel: 404</title>
+  <link id="favicon" rel="icon" type="image/png" href="website/images/favicon/404/1.png">
   <script>
     let currentFrame = 1;
     function updateFavicon() {
       currentFrame = currentFrame % 4 + 1;
-      document.getElementById('favicon').href = `website/visual/favicon/frames/${currentFrame}.png`;
+      document.getElementById('favicon').href = `website/images/favicon/404/${currentFrame}.png`;
     }
     setInterval(updateFavicon, 250);
   </script>
@@ -34,6 +34,6 @@
 </head>
 <body>
   <header>404</header>
-  <message>We're so sorry, it looks like bloxel.net is currently down for maintenance!</message>
+  <message>We're sorry, it looks like Bloxel is currently down for extended maintenance.</message>
 </body>
 </html>

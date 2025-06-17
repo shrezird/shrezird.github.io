@@ -1,39 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Bloxel: 404</title>
-  <link id="favicon" rel="icon" type="image/png" href="website/images/favicon/404/1.png">
-  <script>
-    let currentFrame = 1;
-    function updateFavicon() {
-      currentFrame = currentFrame % 4 + 1;
-      document.getElementById('favicon').href = `website/images/favicon/404/${currentFrame}.png`;
-    }
-    setInterval(updateFavicon, 250);
-  </script>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background-color: #f8f8f8;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    header {
-      font-size: 100px;
-      color: #333;
-    }
-    message {
-      font-size: 20px;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloxel: 404</title>
+    <link rel="icon" type="image/png" href="website/images/favicon/404/on.webp" id="favicon">
+    <script>
+        function toggleFavicon() {
+            const favicon = document.getElementById('favicon');
+            const currentIcon = favicon.getAttribute('href');
+            const newIcon = currentIcon.includes('on.webp') 
+                ? 'website/images/favicon/404/off.webp' 
+                : 'website/images/favicon/404/on.webp';
+            favicon.setAttribute('href', newIcon);
+        }
+        
+        setInterval(toggleFavicon, 500);
+    </script>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        header {
+            font-size: 100px;
+            color: #333;
+        }
+        message {
+            font-size: 20px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  <header>404</header>
-  <message>We're sorry, it looks like Bloxel is currently down for extended maintenance.</message>
+    <header>404</header>
+    <message>We're sorry, it looks like Bloxel is currently down for extended maintenance.</message>
 </body>
 </html>
